@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+	<head>
+		<variable name='drug'/>
+		<variable name='drugLabel'/>
+		<variable name='drugtypeLabel'/>
+	</head>
+	<results>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q18939</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>azathioprine</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>immunosuppressive drug</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q18939</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>azathioprine</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>DNA polymerase inhibitors</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q239426</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>mitoxantrone</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>DNA polymerase inhibitors</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q386119</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>natalizumab</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>monoclonal antibody</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q410352</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>gabapentin</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>calcium channel blocker</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q412174</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>pregabalin</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>calcium channel blocker</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q412323</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>rituximab</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>monoclonal antibody</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q412920</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>daclizumab</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>immunosuppressive drug</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q412920</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>daclizumab</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>monoclonal antibody</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q414030</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>cladribine</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>immunosuppressive drug</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q414030</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>cladribine</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>DNA polymerase inhibitors</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q416132</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>betamethasone</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>glucocorticoid</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q416132</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>betamethasone</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>anti-inflammatory agent</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q417222</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>methylprednisolone</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>glucocorticoid</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q417222</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>methylprednisolone</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>anti-inflammatory agent</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q418123</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>dimethyl fumarate</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>immunosuppressive drug</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q420164</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>alemtuzumab</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>monoclonal antibody</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q421274</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>dantrolene</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>calcium channel blocker</literal>
+			</binding>
+		</result>
+		<result>
+			<binding name='drug'>
+				<uri>http://www.wikidata.org/entity/Q2013780</uri>
+			</binding>
+			<binding name='drugLabel'>
+				<literal xml:lang='en'>ocrelizumab</literal>
+			</binding>
+			<binding name='drugtypeLabel'>
+				<literal xml:lang='en'>monoclonal antibody</literal>
+			</binding>
+		</result>
+	</results>
+</sparql>
