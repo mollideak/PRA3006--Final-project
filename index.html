@@ -1,14 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>MS Drug Map – Visualising Multiple sclerosis treatments by drug class</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MS Drug Map: Visualising Multiple sclerosis treatments by drug class</title>
+    
 </head>
 <body>
   <header>
     <h1>MS Drug Map</h1>
     <p>The following network displays several classes and examples of drugs that are currently used to treat Multiple Sclerosis. The specific drug names are displayed as smaller grey nodes of the network, and the edges connect them to the class of drug they belong to. Hovering over the drug name allows you to highlight the class(es) and doing the same with the drug class allows for better visualisation of the individual drugs belonging to selected class.</p>
+    
   </header>
+  <main>
+    <p id="status">Loading data from Wikidata…</p>
+    <svg id="viz" role="img" aria-label="Network of multiple sclerosis drugs and their drug classes"></svg>
+  </main>
+
+  <footer>Source: Wikidata (CC0). Built with D3.js and SPARQL.</footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script>
+    const ENDPOINT = "https://query.wikidata.org/sparql";
+    const QUERY = `
+      SELECT DISTINCT ?drug ?drugLabel ?drugtype ?drugtypeLabel
+      WHERE {
+        ?drug wdt:P2175 wd:Q8277 .
+        VALUES ?drugtype { wd:Q422549 wd:Q422248 wd:Q249619 wd:Q4118287 wd:Q421700 wd:Q581996 }
+        ?drug wdt:P2868 ?drugtype .
+        SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,en". }
+      }`;
+
+    async function loadData() {
+      const url = ENDPOINT + "?format=json&origin=*&query=" + encodeURIComponent(QUERY);
+      const res = await fetch(url, { headers: { Accept: "application/sparql-results+json" } });
+      if (!res.ok) throw new Error("SPARQL request failed: " + res.status);
+      return (await res.json()).results.bindings;
+    }
+
+    // Turn SPARQL rows into nodes (drugs + classes) and links (drug -> class)
+    function toGraph(rows) {
+      const nodes = new Map();
+      const links = [];
+      for (const r of rows) {
+        const dId = r.drug.value, tId = r.drugtype.value;
+        if (!nodes.has(dId)) nodes.set(dId, { id: dId, label: r.drugLabel.value, kind: "drug" });
+        if (!nodes.has(tId)) nodes.set(tId, { id: tId, label: r.drugtypeLabel.value, kind: "class" });
+        links.push({ source: dId, target: tId });
+      }
+      return { nodes: [...nodes.values()], links };
+    }
+
+    function draw({ nodes, links }) {
+      const svg = d3.select("#viz");
+      const { width, height } = svg.node().getBoundingClientRect();
+      const classColor = d3.scaleOrdinal(d3.schemeTableau10);
+
+      const sim = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(70))
+        .force("charge", d3.forceManyBody().strength(-160))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collide", d3.forceCollide(16));
+
+      const link = svg.append("g").attr("stroke", "#b8c4cc").selectAll("line")
+        .data(links).join("line");
+
+      const node = svg.append("g").selectAll("g").data(nodes).join("g")
+        .call(d3.drag()
+          .on("start", (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+          .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; })
+          .on("end", (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+      node.append("circle")
+        .attr("r", d => d.kind === "class" ? 14 : 6)
+        .attr("fill", d => d.kind === "class" ? classColor(d.id) : "var(--drug)");
+      node.append("text").attr("dx", 10).attr("dy", 4).text(d => d.label);
+
+      // Hover: highlight the node and its neighbours
+      node.on("mouseover", (e, hovered) => {
+        const near = new Set([hovered.id]);
+        links.forEach(l => {
+          if (l.source.id === hovered.id) near.add(l.target.id);
+          if (l.target.id === hovered.id) near.add(l.source.id);
+        });
+        node.classed("dim", d => !near.has(d.id));
+        link.classed("dim", l => l.source.id !== hovered.id && l.target.id !== hovered.id);
+      }).on("mouseout", () => { node.classed("dim", false); link.classed("dim", false); });
+
+      sim.on("tick", () => {
+        link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+        node.attr("transform", d => `translate(${d.x},${d.y})`);
+      });
+    }
+
+    loadData()
+      .then(rows => {
+        document.getElementById("status").textContent =
+          rows.length ? `${rows.length} drug–class links loaded.` : "The query returned no results.";
+        draw(toGraph(rows));
+      })
+      .catch(err => { document.getElementById("status").textContent = "Could not load data: " + err.message; });
+  </script>
 
 </body>
 </html>
